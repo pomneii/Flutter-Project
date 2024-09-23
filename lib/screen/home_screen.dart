@@ -66,7 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const SearchScreen()),
+                              builder: (context) => const SearchScreen()
+                          ),
                         );
                       },
                       decoration: InputDecoration(
@@ -104,10 +105,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                    // Movie List Builder
-                    Flexible(
-                      child: movieListBuilder(popularPoster),
-                    )
+                  // Movie List Builder
+                  Flexible(
+                    child: movieListBuilder(popularPoster),
+                  )
                 ],
               ),
             ),
@@ -119,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget movieListBuilder(List<MovieModel> movieList) {
     return SizedBox(
-      height: 200, // Fixed height for movie cards
+      height: 200,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: movieList.length,

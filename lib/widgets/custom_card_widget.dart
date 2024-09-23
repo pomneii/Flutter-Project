@@ -21,9 +21,7 @@ class CustomCardNormal extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
                 // Using NetworkImage for online images
-                image: movieModel.moviePosterURL!.startsWith('http') 
-                    ? NetworkImage(movieModel.moviePosterURL!) 
-                    : AssetImage(movieModel.moviePosterURL!) as ImageProvider,
+                image: NetworkImage(movieModel.moviePosterURL!),
                 fit: BoxFit.cover,
               ),
             ),
@@ -31,7 +29,7 @@ class CustomCardNormal extends StatelessWidget {
           const SizedBox(height: 8), // Slight spacing between the image and title
           // Movie Title
           Text(
-            '${movieModel.movieTitle!}',
+            '${movieModel.movieTitle!} (${movieModel.movieReleaseYear})',
             style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -43,7 +41,7 @@ class CustomCardNormal extends StatelessWidget {
           const SizedBox(height: 5),
           // Movie Rating
           Text(
-            'Rating: ${movieModel.movieRating}',
+            'Rating : ${movieModel.movieRating}',
             style: const TextStyle(
               color: Colors.yellow,
               fontWeight: FontWeight.w500,
