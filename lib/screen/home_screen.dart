@@ -106,9 +106,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: 20),
                   // Movie List Builder
-                  Flexible(
-                    child: movieListBuilder(popularPoster),
-                  )
+                  // Flexible(
+                  //   child: movieListBuilder(popularPoster),
+                  // ),
+                  movieListBuilder(popularPoster),
                 ],
               ),
             ),
@@ -120,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget movieListBuilder(List<MovieModel> movieList) {
     return SizedBox(
-      height: 400,
+      height: 200,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: movieList.length,

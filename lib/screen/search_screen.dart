@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movieapp/model/movie_model.dart';
+import 'package:movieapp/screen/detail_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -13,11 +14,11 @@ class _SearchScreenState extends State<SearchScreen> {
   static List<MovieModel> movieList = List.from(posterImage);
 
    // ignore: non_constant_identifier_names
-  List<MovieModel> display_list = List.from(movieList);
+  List<MovieModel> displayList = List.from(movieList);
   // filter our list
   void updateList(String value) {
     setState(() {
-      display_list = movieList.where((element) => element.movieTitle!.toLowerCase().contains(value.toLowerCase())).toList();
+      displayList = movieList.where((element) => element.movieTitle!.toLowerCase().contains(value.toLowerCase())).toList();
     });
   }
   
@@ -34,14 +35,6 @@ class _SearchScreenState extends State<SearchScreen> {
           actions: [
             Row(
               children: [
-                // TextButton(onPressed: (){
-                //   Navigator.pop(context);
-                // }, child: 
-                // Text("Home",style: 
-                // GoogleFonts.prompt(
-                //   color: Colors.white,
-                //   fontSize: 15,
-                // ))),
                 Text(
                   "kiki",
                   style: GoogleFonts.prompt(
@@ -91,7 +84,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       height: 20,
                     ),
                     Expanded(
-                      child: display_list.isEmpty
+                      child: displayList.isEmpty
                       ?const Center(
                         child: 
                           Text(
@@ -99,22 +92,27 @@ class _SearchScreenState extends State<SearchScreen> {
                             style: TextStyle(
                               color: Colors.white, 
                               fontSize: 22, fontWeight: 
-                              FontWeight.bold),
+                              FontWeight.bold
+                            ),
                           )
-                        ) : 
+                      ) : 
+                      
                       ListView.builder(
                         padding: const EdgeInsets.only(left: 30),
-                        itemCount: display_list.length,
+                        itemCount: displayList.length,
                         itemBuilder: (context, index) => ListTile(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailScreen()));
+                          },
                           contentPadding: const EdgeInsets.all(8),
                           title: Text(
-                            display_list[index].movieTitle!,
+                            displayList[index].movieTitle!,
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
                           subtitle: Text(
-                            '${display_list[index].movieReleaseYear!}',
+                            '${displayList[index].movieReleaseYear!}',
                             style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold
@@ -126,7 +124,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                "${display_list[index].movieRating}",
+                                "${displayList[index].movieRating}",
                                 style: const TextStyle(
                                   color: Colors.yellow,
                                   fontWeight: FontWeight.bold
@@ -140,7 +138,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               )
                             ],
                           ),
-                          leading: Image.network(display_list[index].moviePosterURL!),
+                          leading: Image.network(displayList[index].moviePosterURL!),
                         ),
                       ),
                     )
