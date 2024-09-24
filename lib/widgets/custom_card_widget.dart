@@ -40,13 +40,23 @@ class CustomCardNormal extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           // Movie Rating
-          Text(
-            'Rating : ${movieModel.movieRating}',
-            style: const TextStyle(
-              color: Colors.yellow,
-              fontWeight: FontWeight.w500,
-              fontSize: 12,
-            ),
+          Row(
+            children: [
+              Text(
+                'Rating : ${movieModel.movieRating}',
+                style: const TextStyle(
+                  color: Colors.yellow,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 12,
+                ),
+              ),
+              const SizedBox(width: 5,),
+              const Icon(
+                Icons.star_rate, 
+                  color: Colors.yellow,
+                  size: 13,
+              ),
+            ],
           ),
         ],
       ),

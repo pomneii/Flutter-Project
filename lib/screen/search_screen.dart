@@ -82,7 +82,9 @@ class _SearchScreenState extends State<SearchScreen> {
                                 borderRadius: BorderRadius.circular(25),
                                 borderSide: BorderSide.none),
                             hintText: "Search",
-                            prefixIcon: const Icon(Icons.search)),
+                            prefixIcon: const Icon(Icons.search),
+                            suffixIcon: const Icon(Icons.clear),
+                        ),    
                       ),
                     ),
                     const SizedBox(
@@ -118,12 +120,25 @@ class _SearchScreenState extends State<SearchScreen> {
                               fontWeight: FontWeight.bold
                             ),
                           ),
-                          trailing: Text(
-                            "${display_list[index].movieRating}",
-                            style: const TextStyle(
-                              color: Colors.yellow,
-                              fontWeight: FontWeight.bold
-                            ),
+                          trailing: Row(
+                            // This ensures that the Row only takes up as much space as its children (the Text and the Icon), 
+                            //instead of expanding to fill all available space, which might cause layout issues.
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                "${display_list[index].movieRating}",
+                                style: const TextStyle(
+                                  color: Colors.yellow,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              ),
+                              const SizedBox(width: 5,),
+                              const Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                                size: 14,
+                              )
+                            ],
                           ),
                           leading: Image.network(display_list[index].moviePosterURL!),
                         ),

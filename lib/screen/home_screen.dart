@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget movieListBuilder(List<MovieModel> movieList) {
     return SizedBox(
-      height: 200,
+      height: 400,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: movieList.length,
