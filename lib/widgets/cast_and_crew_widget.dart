@@ -21,7 +21,7 @@ class CastAndCrewWidget extends StatelessWidget {
           ),
           const SizedBox(height: 20,),
           SizedBox(
-            height: 160,
+            height: 200,
             child: ListView.builder(
               itemCount: casts.length,
               shrinkWrap: true,
@@ -39,12 +39,12 @@ class CastAndCrewWidget extends StatelessWidget {
   Widget castCard(final Map cast) {
     return Container(
       margin: const EdgeInsets.only(right: 20),
-      width: 80,  // Ensure this width is enough for the content
+      width: 160,  // Ensure this width is enough for the content
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,  // Aligns content to the left
         children: [
           Container(
-            height: 120,
+            height: 170,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
@@ -55,13 +55,15 @@ class CastAndCrewWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10,),
-          Text(
-            cast["name"],
-            maxLines: 2,
-            textAlign: TextAlign.left,  // Left-aligned text
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 12,  // Adjust the font size if needed
+          Center(
+            child: Text(
+              cast["name"],
+              maxLines: 2,
+              textAlign: TextAlign.left,  // Left-aligned text
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 12,  // Adjust the font size if needed
+              ),
             ),
           ),
         ],

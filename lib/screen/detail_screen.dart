@@ -96,7 +96,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               ),
                               const SizedBox(height: 10,),
                               Text(
-                                "${movie.movieReleaseYear ?? 'Unknown'}, Christopher Nolan",
+                                "${movie.movieReleaseYear ?? 'Unknown'}, ${movie.movieDirector}",
                                 style: const TextStyle(
                                   color: Colors.white38,
                                   fontSize: 14,
@@ -135,24 +135,24 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                       const SizedBox(height: 10),
                       // story
-                      const SizedBox(
+                      SizedBox(
                         width: double.infinity,
                         child: Row(
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                                 child: ReadMoreText(
-                                  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel accusamus facilis magnam officia eos exercitationem sint aliquid culpa eaque, ratione reiciendis numquam veritatis, labore aperiam nostrum ipsa quisquam cupiditate! Nam.",
+                                  movie.movieStory!,
                                   trimLines: 3,
                                   trimMode: TrimMode.Line,
-                                  moreStyle: TextStyle(
+                                  moreStyle: const TextStyle(
                                     color: Colors.white24,
                                   ),
-                                  lessStyle: TextStyle(
+                                  lessStyle: const TextStyle(
                                     color: Colors.white30,
                                   ),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white70,
                                     height: 1.5,
                                     fontWeight: FontWeight.w500,
@@ -205,7 +205,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           ),
                           InkWell(
                             onTap: () async {
-                              const url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+                              var url = movie.movieTrailer!;
                                 if (kIsWeb) {
                                   // For web, use launchUrlString
                                   if (await canLaunchUrlString(url)) {
@@ -316,7 +316,7 @@ class _DetailScreenState extends State<DetailScreen> {
           
           InkWell(
             onTap: () async {
-              const url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+              var url = movie.movieUrl!;
               if (kIsWeb) {
                 // for web, use launchUrlString
                 if  (await canLaunchUrlString(url)) {
@@ -416,26 +416,26 @@ class _DetailScreenState extends State<DetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: NetworkImage(popularItems[0].comment![index]["imageUrl"]),
-                        )
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: NetworkImage(popularItems[0].comment![index]["imageUrl"]),
+                            )
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               popularItems[0].comment![index]["name"],
@@ -446,6 +446,20 @@ class _DetailScreenState extends State<DetailScreen> {
                             ),
                             const SizedBox(
                               width: 130,
+                            ),
+                            Text(
+                              popularItems[0].comment![index]["date"],
+                              style: const TextStyle(
+                                color: Colors.white60
+                              ),
+                            )
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              width: 10,
                             ),
                             Text(
                               popularItems[0].movieRating!,
@@ -461,15 +475,9 @@ class _DetailScreenState extends State<DetailScreen> {
                             const Icon(
                               Icons.star,
                               color: Colors.yellow,
-                              size: 22,
+                              size: 20,
                             )
                           ],
-                        ),
-                        Text(
-                          popularItems[0].comment![index]["date"],
-                          style: const TextStyle(
-                            color: Colors.white60
-                          ),
                         )
                       ],
                     ),
