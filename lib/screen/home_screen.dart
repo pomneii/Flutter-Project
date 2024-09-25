@@ -95,11 +95,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
-                        Text(
+                        const Text(
                           "See all",
-                          style: GoogleFonts.prompt(
-                              fontSize: 17,
-                              color: const Color.fromARGB(255, 170, 166, 166)),
+                          style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.white54,
+                          )
                         ),
                       ],
                     ),

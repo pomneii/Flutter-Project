@@ -122,6 +122,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           )
                         ],
                       ),
+                      // Genres Tags
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -133,6 +134,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         ],
                       ),
                       const SizedBox(height: 10),
+                      // story
                       const SizedBox(
                         width: double.infinity,
                         child: Row(
@@ -165,10 +167,12 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                 ),
                 // Check if there is cast data before rendering the CastAndCrewWidget
-                if (movie.cast != null)
-                  CastAndCrewWidget(casts: movie.cast!)
-                else
-                  const SizedBox(), // In case there's no cast, render an empty widget
+                // if (movie.cast != null)
+                //   CastAndCrewWidget(casts: movie.cast!)
+                // else
+                //   const SizedBox(), // In case there's no cast, render an empty widget
+                CastAndCrewWidget(casts: movie.cast!),
+                // Trailer 
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 10
@@ -239,30 +243,254 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
                 const SizedBox(
                   height: 30,
+                ),
+                // comments
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Comments",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 20
+                        ),
+                      ),
+                      Text(
+                        "See all",
+                        style: TextStyle(
+                          color: Colors.white54,
+                          fontSize: 17
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                buildCommentCard(),
+                const SizedBox(
+                  height: 70,
                 )
               ],
             ),
-          )
+          ),
+          //InkWell(
+          //   onTap: () async {
+          //     const url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+          //       if (kIsWeb) {
+          //         // For web, use launchUrlString
+          //         if (await canLaunchUrlString(url)) {
+          //           await launchUrlString(url);
+          //         } else {
+          //           throw 'Could not launch $url';
+          //         }
+          //       } else {
+          //         // For mobile, use launchUrl
+          //         final uri = Uri.parse(url);
+          //         if (await canLaunchUrl(uri)) {
+          //           await launchUrl(uri, mode: LaunchMode.externalApplication);
+          //         } else {
+          //           throw 'Could not launch $url';
+          //         }
+          //       }
+          //   },
+          //   child: Container( 
+          //     padding: const EdgeInsets.all(10),
+          //     decoration: const BoxDecoration(
+          //       shape: BoxShape.circle,
+          //       color: Colors.white24,
+          //     ),
+          //     child: Icon(
+          //       Icons.play_arrow_rounded,
+          //       color: Colors.white.withOpacity(0.8),
+          //       size: 40,
+          //     ),
+          //   ),
+          // )
+          Positioned(
+              bottom: 30,
+              left: 30,
+              right: 30,
+              child: 
+          
+          InkWell(
+            onTap: () async {
+              const url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+              if (kIsWeb) {
+                // for web, use launchUrlString
+                if  (await canLaunchUrlString(url)) {
+                  await launchUrlString(url);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              } else {
+                // for mobile, use launchUrl
+                final uri = Uri.parse(url);
+                if (await canLaunchUrl(uri)) {
+                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              }
+            },
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(18),
+                child: Container(
+                  height: 50,
+                  color: Colors.purple,
+                  alignment: Alignment.center,
+                  child: const Text(
+                    "Watch Movie",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+              )
+            ),
+          ),
+          // Positioned(
+          //   bottom: 30,
+          //   left: 30,
+          //   right: 30,
+          //   child: ClipRRect(
+          //     borderRadius: BorderRadius.circular(18),
+          //     child: Container(
+          //       height: 50,
+          //       color: Colors.purple,
+          //       alignment: Alignment.center,
+          //       child: const Text(
+          //         "Watch Movie",
+          //         style: TextStyle(
+          //           color: Colors.white,
+          //           fontWeight: FontWeight.bold,
+          //           fontSize: 15,
+          //         ),
+          //       ),
+          //     ),
+          //   )
+          // )
         ],
+      ),
+    );
+  }
+  Widget buildTag(String title) {
+    return Container(
+      margin: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      decoration: BoxDecoration(
+        color: Colors.white24,
+        borderRadius: BorderRadius.circular(18),
+      ),
+      child: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white38,
+          fontSize: 16,
+        ),
+      ),
+    );
+  }
+
+  Widget buildCommentCard() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      height: 170,
+      child: ListView.builder(
+        itemCount: popularItems[0].comment!.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return Container(
+            width: 300,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.grey[850],
+            ),
+            margin: const EdgeInsets.only(right: 15),
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+            
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: NetworkImage(popularItems[0].comment![index]["imageUrl"]),
+                        )
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              popularItems[0].comment![index]["name"],
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 130,
+                            ),
+                            Text(
+                              popularItems[0].movieRating!,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            const Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                              size: 22,
+                            )
+                          ],
+                        ),
+                        Text(
+                          popularItems[0].comment![index]["date"],
+                          style: const TextStyle(
+                            color: Colors.white60
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    popularItems[0].comment![index]["comment"],
+                    maxLines: 3,
+                    style: const TextStyle(
+                      color: Colors.white
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
 }
 
-Widget buildTag(String title) {
-  return Container(
-    margin: const EdgeInsets.only(top: 20),
-    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-    decoration: BoxDecoration(
-      color: Colors.white24,
-      borderRadius: BorderRadius.circular(18),
-    ),
-    child: Text(
-      title,
-      style: const TextStyle(
-        color: Colors.white38,
-        fontSize: 16,
-      ),
-    ),
-  );
-}

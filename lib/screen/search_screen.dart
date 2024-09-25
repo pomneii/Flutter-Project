@@ -112,7 +112,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 fontWeight: FontWeight.bold),
                           ),
                           subtitle: Text(
-                            '${displayList[index].movieReleaseYear!}',
+                            '${displayList[index].movieReleaseYear}',
                             style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold
