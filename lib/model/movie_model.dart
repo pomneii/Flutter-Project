@@ -4,16 +4,16 @@ class MovieModel {
   String? moviePosterURL;
   double? movieRating;
 
-  // final List<Map>? cast;
-  // final List<Map>? comment;
+  final List<Map>? cast;
+  final List<Map>? comment;
 
   MovieModel({
     this.movieTitle,
     this.movieReleaseYear,
     this.moviePosterURL,
     this.movieRating,
-    // this.comment,
-    // this.cast
+    this.comment,
+    this.cast
   });
 }
 
@@ -23,7 +23,40 @@ final posterImage = [
         movieTitle: "Interstellar",
         movieReleaseYear: 2014,
         moviePosterURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0zt0lp-O3XdL8zzdrEvyzmcl6kOwfgbv4xQ&s",
-        movieRating: 8.7),
+        movieRating: 8.7,
+        cast: [
+          {
+            "name": "kiki",
+            "role": "kuku",
+            "image": "https://m.media-amazon.com/images/M/MV5BMTg0MDc3ODUwOV5BMl5BanBnXkFtZTcwMTk2NjY4Nw@@._V1_FMjpg_UX1000_.jpg"
+          },
+          {
+            "name": "kiki",
+            "role": "kuku",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0zt0lp-O3XdL8zzdrEvyzmcl6kOwfgbv4xQ&s"
+          },
+          {
+            "name": "kiki",
+            "role": "kuku",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0zt0lp-O3XdL8zzdrEvyzmcl6kOwfgbv4xQ&s"
+          },
+          {
+            "name": "kiki",
+            "role": "kuku",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0zt0lp-O3XdL8zzdrEvyzmcl6kOwfgbv4xQ&s"
+          },
+          {
+            "name": "kiki",
+            "role": "kuku",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0zt0lp-O3XdL8zzdrEvyzmcl6kOwfgbv4xQ&s"
+          },
+          {
+            "name": "kiki",
+            "role": "kuku",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0zt0lp-O3XdL8zzdrEvyzmcl6kOwfgbv4xQ&s"
+          }
+
+        ],),
     MovieModel(
         movieTitle: "Inception",
         movieReleaseYear: 2010,
