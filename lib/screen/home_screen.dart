@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   // List of popular movies
-  List<MovieModel> popularPoster = List.of(movieList);
+  List<MovieModel> popularPoster = List.of(posterImage);
 
   @override
   Widget build(BuildContext context) {
@@ -95,12 +95,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
-                        const Text(
+                        Text(
                           "See all",
-                          style: TextStyle(
-                            fontSize: 17,
-                            color: Colors.white54,
-                          )
+                          style: GoogleFonts.prompt(
+                              fontSize: 17,
+                              color: const Color.fromARGB(255, 170, 166, 166)),
                         ),
                       ],
                     ),
