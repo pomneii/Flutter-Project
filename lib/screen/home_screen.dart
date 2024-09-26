@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   // List of popular movies
-  List<MovieModel> popularPoster = List.of(posterImage);
+  List<MovieModel> popularPoster = List.of(movieList);
 
   @override
   Widget build(BuildContext context) {

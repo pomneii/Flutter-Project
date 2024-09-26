@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movieapp/model/movie_model.dart';
@@ -11,7 +12,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  static List<MovieModel> movieList = List.from(posterImage);
+  static List<MovieModel> movieList = List.from(movieList);
 
    // ignore: non_constant_identifier_names
   List<MovieModel> displayList = List.from(movieList);

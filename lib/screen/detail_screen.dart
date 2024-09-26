@@ -16,7 +16,7 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
 
-  List<MovieModel> popularItems = List.of(posterImage);
+  List<MovieModel> popularItems = List.of(movieList);
 
   @override
   Widget build(BuildContext context) {
@@ -501,4 +501,3 @@ class _DetailScreenState extends State<DetailScreen> {
     );
   }
 }
-
