@@ -58,93 +58,93 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
       body: 
         Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                onChanged: (value) => updateList(value),
+                decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25),
+                        borderSide: BorderSide.none),
+                    hintText: "Search",
+                    prefixIcon: const Icon(Icons.search),
+                    suffixIcon: const Icon(Icons.clear),
+                ),    
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: displayList.isEmpty
+              ?const Center(
+                child: 
+                  Text(
+                    "No result found", 
+                    style: TextStyle(
+                      color: Colors.white, 
+                      fontSize: 22, fontWeight: 
+                      FontWeight.bold
+                    ),
+                  )
+              ) : 
+              
+              ListView.builder(
+                padding: const EdgeInsets.only(left: 30),
+                itemCount: displayList.length,
+                itemBuilder: (context, index) => ListTile(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailScreen()));
+                  },
+                  contentPadding: const EdgeInsets.all(8),
+                  title: Text(
+                    displayList[index].movieTitle!,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    '${displayList[index].movieReleaseYear}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  trailing: Row(
+                    // This ensures that the Row only takes up as much space as its children (the Text and the Icon), 
+                    //instead of expanding to fill all available space, which might cause layout issues.
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      const SizedBox(height: 20,),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        onChanged: (value) => updateList(value),
-                        decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(25),
-                                borderSide: BorderSide.none),
-                            hintText: "Search",
-                            prefixIcon: const Icon(Icons.search),
-                            suffixIcon: const Icon(Icons.clear),
-                        ),    
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Expanded(
-                      child: displayList.isEmpty
-                      ?const Center(
-                        child: 
-                          Text(
-                            "No result found", 
-                            style: TextStyle(
-                              color: Colors.white, 
-                              fontSize: 22, fontWeight: 
-                              FontWeight.bold
-                            ),
-                          )
-                      ) : 
-                      
-                      ListView.builder(
-                        padding: const EdgeInsets.only(left: 30),
-                        itemCount: displayList.length,
-                        itemBuilder: (context, index) => ListTile(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailScreen()));
-                          },
-                          contentPadding: const EdgeInsets.all(8),
-                          title: Text(
-                            displayList[index].movieTitle!,
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text(
-                            '${displayList[index].movieReleaseYear}',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-                          trailing: Row(
-                            // This ensures that the Row only takes up as much space as its children (the Text and the Icon), 
-                            //instead of expanding to fill all available space, which might cause layout issues.
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                "${displayList[index].movieRating}",
-                                style: const TextStyle(
-                                  color: Colors.yellow,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                              const SizedBox(width: 5,),
-                              const Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                                size: 14,
-                              )
-                            ],
-                          ),
-                          leading: Image.network(displayList[index].moviePosterURL!),
+                      Text(
+                        "${displayList[index].movieRating}",
+                        style: const TextStyle(
+                          color: Colors.yellow,
+                          fontWeight: FontWeight.bold
                         ),
                       ),
-                    )
-                  ],
+                      const SizedBox(width: 5,),
+                      const Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                        size: 14,
+                      )
+                    ],
+                  ),
+                  leading: Image.network(displayList[index].moviePosterURL!),
                 ),
               ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
