@@ -70,5 +70,4 @@ class CastAndCrewWidget extends StatelessWidget {
       ),
     );
   }
-
 }

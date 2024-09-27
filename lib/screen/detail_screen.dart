@@ -66,7 +66,9 @@ class MovieDetailsScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const SizedBox(height: 30,),
+                const SizedBox(
+                  height: 30,
+                ),
                 // background image
                 Center(
                   child: Container(
@@ -81,7 +83,9 @@ class MovieDetailsScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
@@ -102,7 +106,9 @@ class MovieDetailsScreen extends StatelessWidget {
                                   fontWeight: FontWeight.bold
                                 ),
                               ),
-                              const SizedBox(height: 10,),
+                              const SizedBox(
+                                height: 10,
+                              ),
                               Text(
                                 "${movieSelected.releaseYear ?? 'Unknown'}, ${movieSelected.director}",
                                 style: const TextStyle(
@@ -120,7 +126,9 @@ class MovieDetailsScreen extends StatelessWidget {
                                   color: Colors.yellow
                                 ),
                               ),
-                              const SizedBox(width: 5,),
+                              const SizedBox(
+                                width: 5,
+                              ),
                               const Icon(
                                 Icons.star,
                                 color: Colors.yellow,
@@ -137,7 +145,9 @@ class MovieDetailsScreen extends StatelessWidget {
                           buildTag(movieSelected.genre)
                         ],
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(
+                        height: 10
+                      ),
                       // story
                       SizedBox(
                         width: double.infinity,
@@ -189,7 +199,9 @@ class MovieDetailsScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20,),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Center(
                         child: Stack(
                           alignment: Alignment.center,
@@ -208,22 +220,22 @@ class MovieDetailsScreen extends StatelessWidget {
                             InkWell(
                               onTap: () async {
                                 var url = movieSelected.trailerUrl;
-                                  if (kIsWeb) {
-                                    // For web, use launchUrlString
-                                    if (await canLaunchUrlString(url)) {
-                                      await launchUrlString(url);
-                                    } else {
-                                      throw 'Could not launch $url';
-                                    }
+                                if (kIsWeb) {
+                                  // For web, use launchUrlString
+                                  if (await canLaunchUrlString(url)) {
+                                    await launchUrlString(url);
                                   } else {
-                                    // For mobile, use launchUrl
-                                    final uri = Uri.parse(url);
-                                    if (await canLaunchUrl(uri)) {
-                                      await launchUrl(uri, mode: LaunchMode.externalApplication);
-                                    } else {
-                                      throw 'Could not launch $url';
-                                    }
+                                    throw 'Could not launch $url';
                                   }
+                                } else {
+                                  // For mobile, use launchUrl
+                                  final uri = Uri.parse(url);
+                                  if (await canLaunchUrl(uri)) {
+                                    await launchUrl(uri, mode: LaunchMode.externalApplication);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                }
                               },
                               child: Container( 
                                 padding: const EdgeInsets.all(10),
@@ -278,29 +290,30 @@ class MovieDetailsScreen extends StatelessWidget {
               ],
             ),
           ),
+
           Positioned(
-              bottom: 30,
-              left: 30,
-              right: 30,
-              child: InkWell(
-                onTap: () async {
-                var url = movieSelected.movieUrl!;
-                if (kIsWeb) {
-                // for web, use launchUrlString
-                  if  (await canLaunchUrlString(url)) {
-                    await launchUrlString(url);
-                  } else {
-                    throw 'Could not launch $url';
-                  }
+          bottom: 30,
+          left: 30,
+          right: 30,
+          child: InkWell(
+            onTap: () async {
+              var url = movieSelected.movieUrl!;
+              if (kIsWeb) {
+              // for web, use launchUrlString
+                if  (await canLaunchUrlString(url)) {
+                  await launchUrlString(url);
                 } else {
-                  // for mobile, use launchUrl
-                  final uri = Uri.parse(url);
-                  if (await canLaunchUrl(uri)) {
-                    await launchUrl(uri, mode: LaunchMode.externalApplication);
-                  } else {
-                    throw 'Could not launch $url';
-                  }
+                  throw 'Could not launch $url';
                 }
+              } else {
+                // for mobile, use launchUrl
+                final uri = Uri.parse(url);
+                if (await canLaunchUrl(uri)) {
+                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              }
             },
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(18),
@@ -325,127 +338,126 @@ class MovieDetailsScreen extends StatelessWidget {
     );
   }
 
-Widget buildTag(String title) {
-  return Container(
-    margin: const EdgeInsets.only(top: 20),
-    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-    decoration: BoxDecoration(
-      color: Colors.white24,
-      borderRadius: BorderRadius.circular(18),
-    ),
-    child: Text(
-      title,
-      style: const TextStyle(
-        color: Colors.white38,
-        fontSize: 16,
+  Widget buildTag(String title) {
+    return Container(
+      margin: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      decoration: BoxDecoration(
+        color: Colors.white24,
+        borderRadius: BorderRadius.circular(18),
       ),
-    ),
-  );
-}
+      child: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white38,
+          fontSize: 16,
+        ),
+      ),
+    );
+  }
 
-Widget buildCommentCard() {
-  return Container(
-    margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-    height: 170,
-    child: ListView.builder(
-      itemCount: movieSelected.comment!.length,
-      scrollDirection: Axis.horizontal,
-      itemBuilder: (context, index) {
-        return Container(
-          width: 300,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.grey[850],
-          ),
-          margin: const EdgeInsets.only(right: 15),
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-          
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: NetworkImage(movieSelected.comment![index]["imageUrl"]),
-                          )
+  Widget buildCommentCard() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      height: 170,
+      child: ListView.builder(
+        itemCount: movieSelected.comment!.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return Container(
+            width: 300,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.grey[850],
+            ),
+            margin: const EdgeInsets.only(right: 15),
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: NetworkImage(movieSelected.comment![index]["imageUrl"]),
+                            )
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            movieSelected.comment![index]["name"],
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              movieSelected.comment![index]["name"],
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            width: 130,
-                          ),
-                          Text(
-                            movieSelected.comment![index]["date"],
-                            style: const TextStyle(
-                              color: Colors.white60
+                            const SizedBox(
+                              width: 130,
                             ),
-                          )
-                        ],
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            movieSelected.rating,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14
+                            Text(
+                              movieSelected.comment![index]["date"],
+                              style: const TextStyle(
+                                color: Colors.white60
+                              ),
+                            )
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              width: 10,
                             ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          const Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                            size: 20,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Text(
-                  movieSelected.comment![index]["comment"],
-                  maxLines: 3,
-                  style: const TextStyle(
-                    color: Colors.white
+                            Text(
+                              movieSelected.rating,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            const Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                              size: 20,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    movieSelected.comment![index]["comment"],
+                    maxLines: 3,
+                    style: const TextStyle(
+                      color: Colors.white
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
-    ),
-  );
-}
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 }
