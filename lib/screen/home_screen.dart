@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movieapp/model/movie_model.dart';
 import 'package:movieapp/screen/search_screen.dart';
-import '../widgets/custom_card_widget.dart';
+import 'package:movieapp/widgets/custom_card_widget.dart';
+import '../model/movie_model.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  // List of popular movies
-  List<MovieModel> popularPoster = List.of(posterImage);
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +13,12 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.indigo[900],
-        title: Text(
-          "Movie App",
-          style: GoogleFonts.prompt(
-              fontWeight: FontWeight.bold, color: Colors.white),
+        title: const Text(
+          'Movies app',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white
+          ),
         ),
         actions: [
           Row(
@@ -34,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: GoogleFonts.prompt(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 12),
+                    fontSize: 16),
               ),
             ],
           ),
@@ -44,7 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundImage: NetworkImage(
                 "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b9914517-cfc7-4d3c-ac9d-0e8eb932ed49/df5u3ms-5b5713df-88fe-4b3c-b0d9-2bb8a921fa7e.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I5OTE0NTE3LWNmYzctNGQzYy1hYzlkLTBlOGViOTMyZWQ0OVwvZGY1dTNtcy01YjU3MTNkZi04OGZlLTRiM2MtYjBkOS0yYmI4YTkyMWZhN2UuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.LW27If1L6mBebhIfsQwJi05_ZhcLBE-zJklC592tVaI"),
           ),
-          const SizedBox(width: 40),
+          const SizedBox(width: 20),
+
         ],
       ),
       body: Stack(
@@ -105,32 +100,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  // Movie List Builder
-                  // Flexible(
-                  //   child: movieListBuilder(popularPoster),
-                  // ),
-                  movieListBuilder(popularPoster),
+                  SizedBox(
+                    height: 200,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: movies.length,
+                      itemBuilder: (context, index) {
+                        final movie = movies[index];
+                        return CustomCardNormal(movie: movie);
+                      },
+                    ),
+                  ),
                 ],
               ),
-            ),
-          ),
+            )
+          )
         ],
-      ),
-    );
-  }
-
-  Widget movieListBuilder(List<MovieModel> movieList) {
-    return SizedBox(
-      height: 200,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: movieList.length,
-        itemBuilder: (context, index) {
-          return CustomCardNormal(
-            movieModel: movieList[index],
-          );
-        },
-      ),
+      )
     );
   }
 }
