@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movieapp/model/movie_model.dart';
 import 'package:movieapp/screen/detail_screen.dart';
@@ -38,7 +39,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 style: GoogleFonts.prompt(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 12),
+                    fontSize: 16
+                ),
               )
             ],
           ),
@@ -50,7 +52,15 @@ class _SearchScreenState extends State<SearchScreen> {
               backgroundImage: NetworkImage(
                   "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b9914517-cfc7-4d3c-ac9d-0e8eb932ed49/df5u3ms-5b5713df-88fe-4b3c-b0d9-2bb8a921fa7e.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I5OTE0NTE3LWNmYzctNGQzYy1hYzlkLTBlOGViOTMyZWQ0OVwvZGY1dTNtcy01YjU3MTNkZi04OGZlLTRiM2MtYjBkOS0yYmI4YTkyMWZhN2UuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.LW27If1L6mBebhIfsQwJi05_ZhcLBE-zJklC592tVaI")),
           const SizedBox(
-            width: 50,
+            width: 10,
+          ),
+          const Icon(
+            FontAwesomeIcons.chevronDown,
+            color: Colors.white,
+            size: 16,
+          ),
+          const SizedBox(
+            width: 10,
           )
         ],
       ),
@@ -74,7 +84,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                   hintText: "Search",
                   prefixIcon: const Icon(Icons.search),
-                  suffixIcon: const Icon(Icons.clear),
+                  suffixIcon: const Icon(Icons.clear,),
                 ),
               ),
             ),
@@ -116,7 +126,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       ),
                     ),
                     subtitle: Text(
-                      '${movie.releaseYear}',
+                      movie.releaseYear,
                       style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold
@@ -126,7 +136,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          "${movie.rating}",
+                          movie.rating,
                           style: const TextStyle(
                               color: Colors.yellow,
                               fontWeight: FontWeight.bold
