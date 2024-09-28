@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movieapp/model/movie_model.dart';
 import 'package:movieapp/screen/detail_screen.dart';
+import 'package:movieapp/screen/home_screen.dart';
+import 'package:movieapp/screen/profile_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -38,41 +39,67 @@ class _SearchScreenState extends State<SearchScreen> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.indigo[900],
-        title: Text("Movie App",
-            style: GoogleFonts.prompt(
-                fontWeight: FontWeight.bold, color: Colors.white)),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded
+          ),
+          onPressed: () {
+            Navigator.pop(context); // Change this to your desired navigation
+          },
+          color: Colors.white, // Change the arrow color here
+        ),
+        title: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()), // Replace with your home page widget
+                (Route<dynamic> route) => false, // This removes all the previous routes
+              );
+            },
+            child: Text(
+              'Movie App',
+              style: GoogleFonts.prompt(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
         actions: [
-          Row(
-            children: [
-              Text(
-                "kiki",
-                style: GoogleFonts.prompt(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16
-                ),
-              )
-            ],
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen()));
+              },
+              child: Row(
+                children: [
+                  Text(
+                    "kiki",
+                    style: GoogleFonts.prompt(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(
+                  width: 15
+                  ),              
+                  const CircleAvatar(
+                    radius: 20,
+                    backgroundImage: NetworkImage(
+                      "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b9914517-cfc7-4d3c-ac9d-0e8eb932ed49/df5u3ms-5b5713df-88fe-4b3c-b0d9-2bb8a921fa7e.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I5OTE0NTE3LWNmYzctNGQzYy1hYzlkLTBlOGViOTMyZWQ0OVwvZGY1dTNtcy01YjU3MTNkZi04OGZlLTRiM2MtYjBkOS0yYmI4YTkyMWZhN2UuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.LW27If1L6mBebhIfsQwJi05_ZhcLBE-zJklC592tVaI",
+                    ),
+                  )
+                ],
+              ),
+            )
           ),
           const SizedBox(
-            width: 15,
+            width: 20
           ),
-          const CircleAvatar(
-            radius: 20,
-            backgroundImage: NetworkImage(
-              "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b9914517-cfc7-4d3c-ac9d-0e8eb932ed49/df5u3ms-5b5713df-88fe-4b3c-b0d9-2bb8a921fa7e.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I5OTE0NTE3LWNmYzctNGQzYy1hYzlkLTBlOGViOTMyZWQ0OVwvZGY1dTNtcy01YjU3MTNkZi04OGZlLTRiM2MtYjBkOS0yYmI4YTkyMWZhN2UuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.LW27If1L6mBebhIfsQwJi05_ZhcLBE-zJklC592tVaI")
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          const Icon(
-            FontAwesomeIcons.chevronDown,
-            color: Colors.white,
-            size: 16,
-          ),
-          const SizedBox(
-            width: 10,
-          )
         ],
       ),
       body: Padding(
@@ -132,7 +159,7 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             )
             : ListView.builder(
-                padding: const EdgeInsets.only(left: 30),
+                padding: const EdgeInsets.all(15),
                 itemCount: displayList.length,
                 itemBuilder: (context, index) {
                   final movie = displayList[index]; // Correct list and location

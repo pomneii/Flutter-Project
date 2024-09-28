@@ -21,7 +21,7 @@ class CastAndCrewWidget extends StatelessWidget {
           ),
           const SizedBox(height: 20,),
           SizedBox(
-            height: 200,
+            height: 220,
             child: ListView.builder(
               itemCount: casts.length,
               shrinkWrap: true,
@@ -58,14 +58,21 @@ class CastAndCrewWidget extends StatelessWidget {
           Center(
             child: Text(
               cast["name"],
-              maxLines: 2,
-              textAlign: TextAlign.left,  // Left-aligned text
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 12,  // Adjust the font size if needed
               ),
             ),
           ),
+          Center(
+            child: Text(
+              cast["role"],
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 12,  // Adjust the font size if needed
+              ),
+            ),
+          )
         ],
       ),
     );
