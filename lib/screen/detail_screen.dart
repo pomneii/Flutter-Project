@@ -95,28 +95,31 @@ class MovieDetailsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                movieSelected.title ?? 'Unknown',
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  movieSelected.title ?? 'Unknown',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                "${movieSelected.releaseYear ?? 'Unknown'}, ${movieSelected.director}",
-                                style: const TextStyle(
-                                  color: Colors.white38,
-                                  fontSize: 14,
+                                const SizedBox(
+                                  height: 10,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  "${movieSelected.releaseYear ?? 'Unknown'}, ${movieSelected.director}",
+                                  style: const TextStyle(
+                                    color: Colors.white38,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           Row(
                             children: [
@@ -138,15 +141,15 @@ class MovieDetailsScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                      // Genres Tags
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          buildTag(movieSelected.genre)
-                        ],
-                      ),
                       const SizedBox(
-                        height: 10
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: _buildGenreTagsWithSpacing(movieSelected.genre)
+                        ),
                       ),
                       // story
                       SizedBox(
@@ -211,8 +214,8 @@ class MovieDetailsScreen extends StatelessWidget {
                               width: 450,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(18),
-                                image: const DecorationImage(
-                                  image: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLREY3yiaEjRsumfi7Wul4nBjeKyqEcPJnBg&s"),
+                                image: DecorationImage(
+                                  image: NetworkImage(movieSelected.trailerPoster),
                                   fit: BoxFit.cover
                                 )
                               ),
@@ -337,10 +340,20 @@ class MovieDetailsScreen extends StatelessWidget {
       ),
     );
   }
+  
+  List<Widget> _buildGenreTagsWithSpacing(List<String> genre) {
+    List<Widget> genreTags = [];
+    for (int i = 0; i < genre.length; i++) {
+      genreTags.add(buildTag(genre[i]));
+      if (i < genre.length - 1) {
+        genreTags.add(const SizedBox(width: 10)); // Add SizedBox between tags
+      }
+    }
+    return genreTags;
+  }
 
   Widget buildTag(String title) {
     return Container(
-      margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
       decoration: BoxDecoration(
         color: Colors.white24,
@@ -355,6 +368,23 @@ class MovieDetailsScreen extends StatelessWidget {
       ),
     );
   }
+  // Widget buildTag(String title) {
+  //   return Container(
+  //     margin: const EdgeInsets.only(top: 20),
+  //     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+  //     decoration: BoxDecoration(
+  //       color: Colors.white24,
+  //       borderRadius: BorderRadius.circular(18),
+  //     ),
+  //     child: Text(
+  //       title,
+  //       style: const TextStyle(
+  //         color: Colors.white38,
+  //         fontSize: 16,
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget buildCommentCard() {
     return Container(

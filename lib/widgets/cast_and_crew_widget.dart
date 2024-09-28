@@ -12,7 +12,7 @@ class CastAndCrewWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Text(
-            "Cast",
+            "Casts",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,

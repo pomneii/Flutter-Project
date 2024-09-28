@@ -100,14 +100,18 @@ class _SearchScreenState extends State<SearchScreen> {
                   prefixIcon: const Icon(
                     Icons.search
                   ),
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      _controller.clear(); // Clear the text in the TextField
-                      updateList(''); // Optionally, clear the filtered list too
-                    },
-                    child: const Icon(
-                      Icons.clear,
-                    ),
+                  suffixIcon: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: 
+                      GestureDetector(
+                        onTap: () {
+                          _controller.clear(); // Clear the text in the TextField
+                          updateList(''); // Optionally, clear the filtered list too
+                        },
+                        child: const Icon(
+                          Icons.clear,
+                        ),
+                      ),
                   ),
                 ),
               ),
