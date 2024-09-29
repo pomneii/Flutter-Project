@@ -89,9 +89,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),              
                   const CircleAvatar(
                     radius: 20,
-                    backgroundImage: NetworkImage(
-                      "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b9914517-cfc7-4d3c-ac9d-0e8eb932ed49/df5u3ms-5b5713df-88fe-4b3c-b0d9-2bb8a921fa7e.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I5OTE0NTE3LWNmYzctNGQzYy1hYzlkLTBlOGViOTMyZWQ0OVwvZGY1dTNtcy01YjU3MTNkZi04OGZlLTRiM2MtYjBkOS0yYmI4YTkyMWZhN2UuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.LW27If1L6mBebhIfsQwJi05_ZhcLBE-zJklC592tVaI",
-                    ),
+                    backgroundImage: AssetImage('profile/img_profile.jpg')
                   )
                 ],
               ),
@@ -207,7 +205,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         )
                       ],
                     ),
-                    leading: Image.network(movie.posterUrl),
+                    leading: Image.asset(movie.posterUrl),
                   );
                 },
               ),
