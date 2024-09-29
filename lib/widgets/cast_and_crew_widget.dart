@@ -48,8 +48,7 @@ class CastAndCrewWidget extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
-                // Using NetworkImage for online images
-                image: NetworkImage(cast["image"]!),
+                image: AssetImage(cast["image"]!),
                 fit: BoxFit.cover,
               ),
             ),

@@ -1,4 +1,4 @@
-import 'dart:math'; // Import the math package for generating random numbers
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movieapp/screen/detail_screen.dart';
@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
             onTap: () {
               Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()), // Replace HomePage with your actual home page widget
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
               );
             },
             child: Text(
@@ -54,12 +54,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(
                   width: 15
-                  ),              
+                  ), 
                   const CircleAvatar(
                     radius: 20,
-                    backgroundImage: NetworkImage(
-                      "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b9914517-cfc7-4d3c-ac9d-0e8eb932ed49/df5u3ms-5b5713df-88fe-4b3c-b0d9-2bb8a921fa7e.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I5OTE0NTE3LWNmYzctNGQzYy1hYzlkLTBlOGViOTMyZWQ0OVwvZGY1dTNtcy01YjU3MTNkZi04OGZlLTRiM2MtYjBkOS0yYmI4YTkyMWZhN2UuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.LW27If1L6mBebhIfsQwJi05_ZhcLBE-zJklC592tVaI",
-                    ),
+                    backgroundImage: AssetImage("profile/img_profile.jpg")
                   )
                 ],
               ),
@@ -70,7 +68,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView( // Make the body scrollable
+      body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -84,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
-                    readOnly: true, // This disables editing of the TextField
+                    readOnly: true,
                     onTap: () {
                       // Navigate to SearchScreen when tapped
                       Navigator.push(

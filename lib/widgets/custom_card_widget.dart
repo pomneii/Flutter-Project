@@ -28,8 +28,7 @@ class CustomCardNormal extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
-                        // Using NetworkImage for online images
-                        image: NetworkImage(movie.posterUrl!),
+                        image: AssetImage(movie.posterUrl!),
                         fit: BoxFit.cover,
                       ),
                     ),
